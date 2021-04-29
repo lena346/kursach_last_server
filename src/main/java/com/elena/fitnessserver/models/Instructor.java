@@ -1,6 +1,7 @@
 package com.elena.fitnessserver.models;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "instructors")
@@ -26,6 +27,11 @@ public class Instructor {
 
     @Column(nullable = false)
     private double salary;
+
+    //#####################################
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "instructor")
+    private List<Lesson> lesson;
+
 
     public long getId() {
         return id;
