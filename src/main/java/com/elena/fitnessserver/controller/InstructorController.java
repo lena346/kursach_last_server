@@ -2,7 +2,6 @@ package com.elena.fitnessserver.controller;
 
 import com.elena.fitnessserver.exceptions.ResourceNotFoundException;
 import com.elena.fitnessserver.models.Instructor;
-import com.elena.fitnessserver.models.Program;
 import com.elena.fitnessserver.repositories.InstructorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,7 +13,7 @@ import java.util.List;
 @RestController
 public class InstructorController {
 
-    @Autowired //###############
+    @Autowired
     private final InstructorRepository instructorRepository;
 
     public InstructorController(InstructorRepository instructorRepository) {

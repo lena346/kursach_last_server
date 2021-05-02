@@ -37,14 +37,6 @@ public class LessonController {
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-//    @GetMapping(value = "/lessons/{id}")
-//    public ResponseEntity<Lesson> read(@PathVariable(name = "id") Long id) {
-//        Lesson lesson = lessonRepository.findById(id).orElse(null);
-//
-//        return lesson != null
-//                ? new ResponseEntity<>(lesson, HttpStatus.OK)
-//                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//    }
 
     @PutMapping(value = "/lessons/{id}")
     public Lesson update(@PathVariable(name = "id") Long lessonId, @RequestBody Lesson lessonReq) {

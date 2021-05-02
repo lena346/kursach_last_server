@@ -1,7 +1,6 @@
 package com.elena.fitnessserver.models;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "programs")
@@ -17,14 +16,6 @@ public class Program {
     private Integer price;
 
     private String description;
-
-//    @ManyToOne
-//    @JoinColumn(name = "client_id", nullable = false)
-//    private Client client;
-//
-//    @ManyToOne
-//    @JoinColumn(name = "season_ticket_id", nullable = false)
-//    private SeasonTicket seasonTicket;
 
 
     public long getId() {

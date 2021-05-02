@@ -1,7 +1,6 @@
 package com.elena.fitnessserver.models;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "lessons")
@@ -15,9 +14,7 @@ public class Lesson {
 
     @Column(name = "notes", nullable = false)
     private String notes;
-    //################################3
-//    @Column(name = "instructor_id", updatable = false, insertable = false)
-//    private long instructorId;
+
 
     @ManyToOne
     @JoinColumn(name = "instructor_id")
