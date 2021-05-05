@@ -2,6 +2,7 @@ package com.elena.fitnessserver.models;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "instructors")
@@ -10,7 +11,7 @@ public class Instructor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(nullable = false)
+    @Column(name = "team",nullable = false)
     private String team;
 
     @Column(name = "last_name", nullable = false)
@@ -19,19 +20,21 @@ public class Instructor {
     @Column(name = "first_name", nullable = false)
     private String firstName;
 
-    @Column(nullable = false)
+    @Column(name = "telephone", nullable = false)
     private String telephone;
 
-    @Column(nullable = false)
+    @Column(name = "age", nullable = false)
     private int age;
 
-    @Column(nullable = false)
+    @Column(name = "salary", nullable = false)
     private double salary;
 
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "instructor")
     private List<Lesson> lesson;
 
+    @ManyToMany(mappedBy = "instructors")
+    private Set<Client> clients;
 
     public long getId() {
         return id;

@@ -15,10 +15,21 @@ public class Lesson {
     @Column(name = "notes", nullable = false)
     private String notes;
 
-
     @ManyToOne
     @JoinColumn(name = "instructor_id")
     private Instructor instructor;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "program_id")
+    Program program;
+
+    public Program getProgram() {
+        return program;
+    }
+
+    public void setProgram(Program program) {
+        this.program = program;
+    }
 
     public Instructor getInstructor() {
         return instructor;

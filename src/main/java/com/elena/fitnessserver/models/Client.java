@@ -1,6 +1,8 @@
 package com.elena.fitnessserver.models;
 
 import javax.persistence.*;
+import java.util.List;
+import java.util.Set;
 
 
 @Entity
@@ -9,7 +11,7 @@ public class Client {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(nullable = false)
+    @Column(name = "team",nullable = false)
     private String teamClient;
 
     @Column(name = "last_name", nullable = false)
@@ -18,15 +20,41 @@ public class Client {
     @Column(name = "first_name", nullable = false)
     private String firstNameClient;
 
-    @Column(nullable = false)
+    @Column(name = "telephone", nullable = false)
     private String telephoneClient;
 
-    @Column(nullable = false)
+    @Column(name = "age",nullable = false)
     private int ageClient;
 
-    @Column(nullable = false)
+    @Column(name = "date", nullable = false)
     private String dateClient;
 
+    @OneToMany(mappedBy = "client", fetch = FetchType.LAZY)
+    private List<Program> programs;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "clients_instructors",
+            joinColumns = @JoinColumn(name = "client_id"),
+            inverseJoinColumns = @JoinColumn(name = "instructor_id")
+    )
+    private Set<Instructor> instructors;
+
+    public void setInstructors(Set<Instructor> instructors) {
+        this.instructors = instructors;
+    }
+
+    public Set<Instructor> getInstructors() {
+        return instructors;
+    }
+
+    public void setPrograms(List<Program> programs) {
+        this.programs = programs;
+    }
+
+    public List<Program> getPrograms() {
+        return programs;
+    }
 
     public long getId() {
         return id;

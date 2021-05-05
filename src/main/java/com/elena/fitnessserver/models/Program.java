@@ -1,6 +1,7 @@
 package com.elena.fitnessserver.models;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "programs")
@@ -9,14 +10,37 @@ public class Program {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(nullable = false)
+    @Column(name = "name",nullable = false)
     private String name;
 
-    @Column(nullable = false)
+    @Column(name = "price",nullable = false)
     private Integer price;
 
+    @Column(name = "description")
     private String description;
 
+    @ManyToOne
+    @JoinColumn(name = "client_id")
+    private Client client;
+
+    @OneToMany(mappedBy = "program", fetch = FetchType.EAGER)
+    private Set<Lesson> lessons;
+
+    public Set<Lesson> getLessons() {
+        return lessons;
+    }
+
+    public void setLessons(Set<Lesson> lessons) {
+        this.lessons = lessons;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
 
     public long getId() {
         return id;
