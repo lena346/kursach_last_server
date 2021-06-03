@@ -1,5 +1,4 @@
 package com.elena.fitnessserver.controller;
-
 import com.elena.fitnessserver.exceptions.ResourceNotFoundException;
 import com.elena.fitnessserver.models.Lesson;
 import com.elena.fitnessserver.repositories.LessonRepository;
@@ -7,15 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
-
 @RestController
 public class LessonController {
 
     @Autowired
     private LessonRepository lessonRepository;
-
     @PostMapping(value = "/lessons")
     public Lesson create(@RequestBody AddLesson newLesson) {
         Lesson lesson = newLesson.lesson;
@@ -28,7 +24,6 @@ public class LessonController {
         System.out.println(instructorId);
         return new ResponseEntity<>(lessonRepository.findAllByInstructorId(instructorId), HttpStatus.OK);
     }
-
     @GetMapping(value = "/lessons")
     public ResponseEntity<List<Lesson>> read() {
         List<Lesson> lesson = lessonRepository.findAll();
@@ -36,8 +31,6 @@ public class LessonController {
                 ? new ResponseEntity<>(lesson, HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
-
-
     @PutMapping(value = "/lessons/{id}")
     public Lesson update(@PathVariable(name = "id") Long lessonId, @RequestBody Lesson lessonReq) {
         return lessonRepository.findById(lessonId).map(
@@ -56,5 +49,4 @@ public class LessonController {
                     return ResponseEntity.ok().build();
                 }).orElseThrow(() -> new ResourceNotFoundException("Lesson not found with id" + lessonId));
     }
-
 }

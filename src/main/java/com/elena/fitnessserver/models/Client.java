@@ -1,9 +1,7 @@
 package com.elena.fitnessserver.models;
-
 import javax.persistence.*;
 import java.util.List;
 import java.util.Set;
-
 
 @Entity
 public class Client {
